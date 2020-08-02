@@ -51,14 +51,11 @@ func main() {
 		log.Fatal("Failed to login to discord: ", err.Error())
 	}
 
-	log.Printf("Login response: %#v", response)
-
 	if response.Event != "READY" {
 		log.Fatalln("Handshake with Discord failed.")
 	}
 
 	var lastSong string
-
 	for {
 		song, err := WindowTitle("TIDAL.exe")
 
@@ -66,7 +63,7 @@ func main() {
 			log.Println("error getting Tidal song:", err.Error())
 		}
 
-		// tidal may have stopped
+		// tidal may have stopped, there was a song playing but not anymore, or tidal died
 		if song == "" && lastSong != "" {
 			setNowPlaying(discord, "", "")
 		} else if song != lastSong {
