@@ -71,7 +71,9 @@ func main() {
 			setNowPlaying(discord, "", "")
 		} else if song != lastSong {
 			np := strings.Split(song, " - ")
-			setNowPlaying(discord, np[0], np[1])
+			if len(np) == 2 {
+				setNowPlaying(discord, np[0], np[1])
+			}
 			lastSong = song
 		}
 
