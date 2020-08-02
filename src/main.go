@@ -9,14 +9,12 @@ import (
 
 func setNowPlaying(ipc *DiscordIPC, song, artist string) {
 
-	var np string
-	if song != "" && artist != "" {
-		np = song + " by " + artist
+	if artist != "" {
+		artist = "by " + artist
 	}
-
 	_, _ = ipc.SetActivity(Activity{
-		Details: "Listening to a song on TIDAL ...",
-		State:   np,
+		Details: song,
+		State:   artist,
 		Assets: Assets{
 			LargeText:  "none",
 			SmallText:  "none",
