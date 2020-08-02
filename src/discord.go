@@ -33,30 +33,6 @@ type Activity struct {
 	Assets  Assets `json:"assets"`
 }
 
-func (act *Activity) JSON() []byte {
-
-	if act.Assets.LargeImage == "" {
-		act.Assets.LargeImage = "none"
-	}
-	if act.Assets.LargeText == "" {
-		act.Assets.LargeText = "none"
-	}
-	if act.Assets.SmallImage == "" {
-		act.Assets.SmallImage = "none"
-	}
-	if act.Assets.SmallText == "" {
-		act.Assets.SmallText = "none"
-	}
-
-	payload, err := json.Marshal(act)
-
-	if err != nil {
-		panic(err.Error())
-	}
-
-	return payload
-}
-
 // DiscordRawResponse contains a parsed version of the data from Discord's IPC responses
 // This shouldn't really be used directly, but rather used by each exported function to form a nicer Type that's
 // friendlier to work with so the main program doesn't need to fool unmarshalling data
